@@ -6,6 +6,13 @@ TypeScript type definitions and Joi validation schemas for Malaysian Standard MS
 
 This package provides TypeScript interfaces and Joi validation schemas that implement the data specifications defined in MS 2781:2023. This standard was developed by the Department of Standards Malaysia to create data consistency across e-commerce logistics systems.
 
+## Installation
+
+```bash
+# Using npm
+npm install git+https://github.com/delyva/ms2781-types.git
+```
+
 ## Features
 
 - 🏗️ TypeScript interfaces following MS 2781:2023 specifications
@@ -40,6 +47,42 @@ const request: DeliveryOrderRequest = {
 const { error, value } = deliveryOrderRequestSchema.validate(request);
 ```
 
+## Usage in JavaScript (with JSDoc)
+
+```javascript
+/** @typedef {import('ms2781-types').DeliveryOrderRequest} DeliveryOrderRequest */
+const { deliveryOrderRequestSchema } = require('ms2781-types');
+
+/** @type {DeliveryOrderRequest} */
+const order = {
+  orderNumber: "ORDER123",
+  // VSCode will provide type hints here
+};
+
+// Validate
+const { error } = deliveryOrderRequestSchema.validate(order);
+```
+
+### VSCode Setup for JavaScript Projects
+
+Create `jsconfig.json` in your project root:
+```json
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "moduleResolution": "node"
+  }
+}
+```
+
+## Type Coverage
+
+This package provides type definitions and validations for:
+
+- `DeliveryOrderRequest` & `DeliveryOrderResponse`
+- `UpdateDeliveryStatusRequest` & `UpdateDeliveryStatusResponse`
+- `CancelDeliveryOrderRequest` & `CancelDeliveryOrderResponse`
+
 ## Standard Reference
 
 This package implements type definitions and validations based on:
@@ -52,13 +95,3 @@ Note: This package provides only type definitions and validations. For the full 
 ## License
 
 MIT
-
-## Keywords
-- typescript
-- malaysia-standard
-- ms2781
-- e-commerce
-- logistics
-- type-definitions
-- validation
-- logistics-data
